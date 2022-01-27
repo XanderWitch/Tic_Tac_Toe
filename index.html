@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>XanderWitch Tic Tac Toe</title>
+		<link rel="stylesheet" href="style.css" />
+		<link
+			rel="stylesheet"
+			href="/node_modules/bootstrap/dist/css/bootstrap.css"
+		/>
+		<script src="script.js" defer></script>
+	</head>
+	<body>
+		<!---->
+		<h1 class="mt-3 text-center custom-color display-3">
+			<img src="catface.svg" class="top-image" />
+			Welcome to Cats vs. Dogs Tic Tac Toe!
+			<img src="dogface.svg" class="top-image" />
+		</h1>
+		<div class="container">
+			<div class="board mt-5" id="board">
+				<!--Need 9 cells. Use "data-cell" to access the info in JS without using class.-->
+				<div class="cell" data-cell></div>
+				<div class="cell" data-cell></div>
+				<div class="cell" data-cell></div>
+				<div class="cell" data-cell></div>
+				<div class="cell" data-cell></div>
+				<div class="cell" data-cell></div>
+				<div class="cell" data-cell></div>
+				<div class="cell" data-cell></div>
+				<div class="cell" data-cell></div>
+			</div>
+			<div class="container">
+				<div class="row mt-5">
+					<div class="col-sm-6 offset-sm-3 text-center">
+						<button id="onScreenRestartButton" class="restartButton mt-10">
+							Restart
+						</button>
+					</div>
+				</div>
+			</div>
+			<!--Message for win-->
+			<div class="you-win display-4  mt-5" id="winMessage">
+				<div id="winningImage"></div>
+				<div data-winning-message-text></div>
+					<button id="restartButton">Restart</button>
+				</div>
+			</div>
+		</div>
+
+		<script src="../node_modules/jquery/dist/jquery.js"></script>
+	</body>
+</html>

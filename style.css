@@ -1,0 +1,160 @@
+*, *::after, *::before {
+    box-sizing: border-box;
+}
+
+:root {
+    --cell-size: 200px;
+    --mark-size: calc(var(--cell-size) * 0.9);
+}
+
+body {
+    background: rgb(250, 199, 255);
+    background: radial-gradient(circle, rgba(250, 199, 255, 1) 33%, rgba(255, 255, 255, 1) 99%);
+}
+
+/* set up board with grid */
+.board {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: repeat(3, auto);
+}
+
+.cell {
+    width: var(--cell-size);
+    height: var(--cell-size);
+    border: 2px solid rgba(159, 90, 253, 1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.cell:first-child,
+.cell:nth-child(2),
+.cell:nth-child(3) {
+    border-top: none;
+}
+
+.cell:nth-child(3n + 1) {
+    border-left: none;
+}
+
+.cell:nth-child(3n + 3) {
+    border-right: none;
+}
+
+.cell:last-child,
+.cell:nth-child(7),
+.cell:nth-child(8) {
+    border-bottom: none;
+}
+
+.cell.Cat, .cell.Dog {
+    cursor: not-allowed;
+}
+
+
+/* If it's cat's turn, use a Cat face to hover over spots that the pointer points to. */
+.board.Cat .cell:not(.Cat):not(.Dog):hover {
+    content: url(Catfacehover.svg);
+    object-fit: contain;
+}
+
+/* If it's dog's turn, use a dog face to hover over spots that the pointer points to. */
+.board.Dog .cell:not(.Cat):not(.Dog):hover {
+    content: url(dogfacehover.svg);
+    object-fit: contain;
+}
+
+.cell.Cat {
+    background-color: white;
+    content: url(catfaceX.svg);
+    object-fit: contain;
+}
+
+.cell.Dog {
+    background-color: white;
+    content: url(dogfaceO.svg);
+    object-fit: contain;
+}
+
+.container {
+    width: 100vw;
+    height: 100vh;
+}
+
+.custom-color {
+    color: indigo;
+}
+
+.custom-alert {
+    background-color: indigo;
+    margin: auto;
+    width: 50%;
+}
+
+.restartButton {
+    font-size: 2rem;
+    background-color: rgb(62, 29, 100);
+    color: white;
+    padding: 0.25em 0.5em;
+    cursor: pointer;
+    font-style: bold;
+}
+
+.top-image {
+    width: 10%
+}
+
+.winimg {
+    display: flex;
+    font-style: bold;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    margin: auto;
+    flex-direction: column;
+    width: 50%;
+}
+
+.you-win {
+    display: none;
+    position: fixed;
+    font-style: bold;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(62, 29, 100, 0.95);
+    color: white;
+    font-size: 3rem;
+    flex-direction: column;
+}
+
+.you-win button {
+    font-size: 1.5rem;
+    background-color: rgb(62, 29, 100);
+    border: 2px solid white;
+    color: white;
+    padding: 0.25em 0.5em;
+    margin-top: 2%;
+    cursor: pointer;
+
+}
+
+.you-win button:hover, .restartButton:hover {
+    background-color: white;
+    border: 2px solid rgb(62, 29, 100);
+    color: rgb(62, 29, 100);
+}
+
+
+.you-win.show {
+    display: flex;
+}

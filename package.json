@@ -1,0 +1,15 @@
+{
+  "name": "febc-fetwk5codingassignment-tic_tac_toe",
+  "version": "1.0.0",
+  "description": "Tic Tac Toe Web Game",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^5.1.3",
+    "jquery": "^3.6.0"
+  }
+}
