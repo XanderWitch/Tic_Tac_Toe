@@ -1,6 +1,7 @@
-const CAT_CLASS = 'Cat';
-const DOG_CLASS = 'Dog';
+const CAT_CLASS = 'Cat'; //x
+const DOG_CLASS = 'Dog'; //o
 
+ //Use an array to list all the possible combinations of filled cells that would qualify as a win
 const possibleWins = [
     [0, 1, 2],
     [3, 4, 5],
@@ -10,31 +11,31 @@ const possibleWins = [
     [2, 5, 8],
     [0, 4, 8],
     [2, 4, 6]
-]; //lists all the possible combinations of filled cells that would qualify as a win
+];
 
 const cellElements = document.querySelectorAll('[data-cell]');
-// const boardClass = document.getElementById('#board');
 const boardClass = $('#board');
 const winText = document.querySelector('[data-winning-message-Text]');
-//const winMessageElement = document.getElementById('winMessage');
 const restartButton = document.getElementById('restartButton');
 const onScreenRestart = document.getElementById('onScreenRestart')
 const winMessageElement = document.getElementById('winMessage');
    
-
 let dogsTurn;
 
 startGame();
-
 restartButton.addEventListener('click', startGame);
 onScreenRestartButton.addEventListener('click', startGame);
 
+//functions necessary to clear all data and the board and begin a new game
 function startGame() {
-    dogsTurn = false; //start turn with Cat
+    //start turn with Cat and announce "Cat goes first"
+    dogsTurn = false; 
+    clearFirstTurnAlert();
     showAlert();
+
     // showTurn(currentClass);
     cellElements.forEach(cell => {
-        //set board back to start for each cell by removing the class
+        //set board back to start for each cell by removing the classes
         cell.classList.remove(CAT_CLASS);
         cell.classList.remove(DOG_CLASS);
         cell.removeEventListener('click', handleClick);
@@ -43,12 +44,12 @@ function startGame() {
         cell.addEventListener('click', handleClick, { once: true }) //once:true means only handle event once in each cell
     })
 
+    //reset items to begin new game
     const winImageDiv = $('#winningImage');
     winImageDiv.empty();
     const turnDiv = $('turnDiv');
     turnDiv.empty();
     clearTurnAlert();
-
   
     //turn on hover state
     setBoardHoverClass(); 
@@ -58,27 +59,31 @@ function startGame() {
 }
 
 function handleClick(e) {
-    //placeMark
+
+    //placeMark (cat or dog)
     const cell = e.target;
+    
+    //determine turn
     var currentClass = dogsTurn ? DOG_CLASS : CAT_CLASS;
     placeMark(cell, currentClass);
     clearFirstTurnAlert()
+
     //checkForWin
     if (checkForWin(currentClass)) {
-        endGame(false)        
-    } else if (isDraw()) { //check for draw
+        endGame(false)
+    //check for draw
+    } else if (isDraw()) { 
         endGame(true) 
+    //switch turns    
     } else {
-        //switch turns
         switchTurns();
         clearTurnAlert();
         currentClass = dogsTurn ? DOG_CLASS : CAT_CLASS;
         showTurn(currentClass);
+    
         //set hover state
         setBoardHoverClass();
     }
-
-
 }    
 
 function endGame(draw) {
@@ -96,7 +101,6 @@ function endGame(draw) {
         dog.classList.add('winimg');
         document.getElementById('winningImage').appendChild(dog);
         winText.innerText = 'Dog Wins!'
-
     } else if (!dogsTurn) {
         var cat
         cat = document.createElement("img");
@@ -110,7 +114,8 @@ function endGame(draw) {
     winMessageElement.classList.add('show');
 }
 
-function isDraw() { //destructor cellElements into an array to use the every method
+function isDraw() {
+    //destructor cellElements into an array to use the every method
     return [...cellElements].every(cell => { 
         return cell.classList.contains(CAT_CLASS) || cell.classList.contains(DOG_CLASS)
     })
@@ -122,7 +127,6 @@ function placeMark(cell, currentClass) {
 
 function switchTurns() {
     dogsTurn = !dogsTurn;
-
 }
 
 function setBoardHoverClass() {
@@ -135,16 +139,16 @@ function setBoardHoverClass() {
         }
 }
 
+//if every cell in the current cell (one of the winning combinations) is filled with the current class, that class has won
 function checkForWin(currentClass) {
     return possibleWins.some(combination => {
         return combination.every(indeCat => {
             return cellElements[indeCat].classList.contains(currentClass)
         })
     })
-} //if every cell in the current cell (one of the winning combinations) is filled with the current class, that class has won
+} 
 
-    function showAlert(message, className) {
-
+function showAlert(message, className) {
         //Build div from scratch and insert into DOM
         const div = document.createElement('div');
         div.className = 'firstTurnDiv mt-3 mb-3 alert text-light text-center display-6 custom-alert';
@@ -152,22 +156,17 @@ function checkForWin(currentClass) {
         const container = document.querySelector('.container'); //parent element
         const board = document.querySelector('.board'); //element it goes before
         container.insertBefore(div, board); //insert the div before the form
-
-        // //Vanish alert boCat in 3 seconds
-        // setTimeout(() => document.querySelector('.alert').remove(), 3000); //first parameter is the function, which grabs the alert here, and the secton parameter is the time in milliseconds
 }
     
-    function showTurn(currentClass) {
-
-        //Build div from scratch and insert into DOM
-        const div = document.createElement('div');
-        div.className = 'turnDiv mt-3 mb-3 alert text-light text-center h1 display-6 custom-alert';
-        const turnText = `${currentClass}'s Turn!`
-        div.appendChild(document.createTextNode(turnText));
-        const container = document.querySelector('.container'); //parent element
-        const board = document.querySelector('.board'); //element it goes before
-        container.insertBefore(div, board); //insert the div before the form
- 
+function showTurn(currentClass) {
+    //Build div from scratch and insert into DOM
+    const div = document.createElement('div');
+    div.className = 'turnDiv mt-3 mb-3 alert text-light text-center h1 display-6 custom-alert';
+    const turnText = `${currentClass}'s Turn!`
+    div.appendChild(document.createTextNode(turnText));
+    const container = document.querySelector('.container'); //parent element
+    const board = document.querySelector('.board'); //element it goes before
+    container.insertBefore(div, board); //insert the div before the form
 }
 
 function clearTurnAlert() {

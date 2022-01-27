@@ -19,9 +19,10 @@
 			Welcome to Cats vs. Dogs Tic Tac Toe!
 			<img src="dogface.svg" class="top-image" />
 		</h1>
+
 		<div class="container">
 			<div class="board mt-5" id="board">
-				<!--Need 9 cells. Use "data-cell" to access the info in JS without using class.-->
+				<!--Need 9 cells, one for each space on the board. Use "data-cell" to access the info in JS without using class.-->
 				<div class="cell" data-cell></div>
 				<div class="cell" data-cell></div>
 				<div class="cell" data-cell></div>
@@ -32,6 +33,8 @@
 				<div class="cell" data-cell></div>
 				<div class="cell" data-cell></div>
 			</div>
+
+			<!--Restart Button-->
 			<div class="container">
 				<div class="row mt-5">
 					<div class="col-sm-6 offset-sm-3 text-center">
@@ -41,13 +44,15 @@
 					</div>
 				</div>
 			</div>
-			<!--Message for win-->
-			<div class="you-win display-4  mt-5" id="winMessage">
+
+			<!--End-of-game message, Set to show only when there is a win or tie-->
+			<div class="you-win display-4" id="winMessage">
 				<div id="winningImage"></div>
 				<div data-winning-message-text></div>
 					<button id="restartButton">Restart</button>
 				</div>
 			</div>
+
 		</div>
 
 		<script src="../node_modules/jquery/dist/jquery.js"></script>
