@@ -14,7 +14,7 @@ const possibleWins = [
 ];
 
 const cellElements = document.querySelectorAll('[data-cell]');
-const boardClass = $('#board');
+const boardClass = $('.board');
 const winText = document.querySelector('[data-winning-message-Text]');
 const restartButton = document.getElementById('restartButton');
 const onScreenRestart = document.getElementById('onScreenRestart')
@@ -93,6 +93,7 @@ function endGame(draw) {
         tie.src = "dogandcattie.svg"
         tie.classList.add('winimg');
         document.getElementById('winningImage').appendChild(tie);
+        winText.classList.add('winText');
         winText.innerText = "It's a tie!"
     } else if (dogsTurn) {
         var dog
@@ -100,6 +101,7 @@ function endGame(draw) {
         dog.src = "dogwins.svg"
         dog.classList.add('winimg');
         document.getElementById('winningImage').appendChild(dog);
+        winText.classList.add('winText');
         winText.innerText = 'Dog Wins!'
     } else if (!dogsTurn) {
         var cat
@@ -107,6 +109,7 @@ function endGame(draw) {
         cat.src = "catwins.svg"
         cat.classList.add('winimg');
         document.getElementById('winningImage').appendChild(cat);
+        winText.classList.add('winText');
         winText.innerText = 'Cat Wins!'
     }
 

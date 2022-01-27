@@ -122,6 +122,9 @@ body {
     flex-direction: column;
     width: 50%;
 }
+.winText {
+    margin-bottom: 2%;
+}
 
 .you-win {
     display: none;
